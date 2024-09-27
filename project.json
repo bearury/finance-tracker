@@ -13,7 +13,7 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "docs/finance-tracker",
+        "outputPath": "docs",
         "index": "./src/index.html",
         "browser": "./src/main.ts",
         "polyfills": [
@@ -99,7 +99,7 @@
       "options": {
         "buildTarget": "finance-tracker:build",
         "port": 4200,
-        "staticFilePath": "dist/finance-tracker/browser",
+        "staticFilePath": "",
         "spa": true
       }
     }
