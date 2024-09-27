@@ -1,0 +1,33 @@
+@if (amountForCategory().incoming.length) {
+  <div>
+    <h3 class="title">Статистика доходов</h3>
+    <tui-ring-chart
+      [(activeItemIndex)]="incomingIndex"
+      [value]="amountForCategory().incoming"
+    >
+      <span>{{ incomingSum }} ₽</span>
+      <div>{{ incomingLabel }}</div>
+    </tui-ring-chart>
+  </div>
+}
+
+@if (amountForCategory().expensing.length) {
+  <div>
+    <h3 class="title">Статистика расходов</h3>
+    <tui-ring-chart
+      [(activeItemIndex)]="expensingIndex"
+      [value]="amountForCategory().expensing"
+    >
+      <span>{{ expensingSum }} ₽</span>
+      <div>{{ expensingLabel }}</div>
+    </tui-ring-chart>
+  </div>
+}
+
+
+
+
+
+
+
+

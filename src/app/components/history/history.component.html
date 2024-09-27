@@ -1,0 +1,49 @@
+@if (stateService.transactionsState().length) {
+  <div class="items-transaction">
+    <div [collapsed]="true" class="group" size="l" tuiGroup>
+      <div class="group-item__title_category"><span>Категория</span></div>
+      <div class="group-item__title"><span>Сумма</span></div>
+    </div>
+
+
+    <div
+      *ngFor="let tr of stateService.transactionsState()"
+      tuiGroup size="l"
+      [collapsed]="true"
+      class="group"
+      [@animation]
+      tuiHint
+    >
+      <div class="group-item__category">{{ tr.category }}</div>
+      <div class="group-item__category">{{ tr.date }}</div>
+      <div class="group-item">{{ tr.amount | amountTransform: tr.type }}</div>
+      <button
+        tuiButton
+        size="l"
+        type="button"
+        [appearance]="stateService.currentTransactionsState()?.id === tr.id ? 'outline' : 'primary'"
+        class="btn"
+        (click)="onChange(tr)"
+      >
+        Изменить
+      </button>
+      <button
+        tuiButton
+        size="l"
+        type="button"
+        appearance="accent"
+        class="btn"
+        (click)="onDelete(tr.id)"
+      >
+        Удалить
+      </button>
+      @if (tr.description) {
+        <tui-hint *tuiHint>{{ tr.description }}</tui-hint>
+      }
+    </div>
+
+  </div>
+} @else {
+  <div class="not-found">Транзакции пока не добавлены</div>
+}
+

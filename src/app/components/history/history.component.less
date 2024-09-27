@@ -1,0 +1,59 @@
+.items-transaction {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.group-item {
+  .field();
+  flex-wrap: wrap;
+
+  &__title {
+    .field();
+    justify-content: center;
+    height: 1.5rem;
+
+    &_category {
+      .field();
+      height: 1.5rem;
+      flex-basis: 20%;
+      flex-grow: 0;
+      justify-content: center;
+    }
+  }
+
+  &__category {
+    .field();
+    flex-basis: 20%;
+    flex-grow: 0;
+  }
+}
+
+.btn {
+  max-width: 110px;
+}
+
+.field {
+  border: 1px solid #292b35;
+  height: 2.78rem;
+  padding: 0.3rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 1rem;
+
+  span {
+    font-weight: bold;
+  }
+}
+
+.not-found {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+

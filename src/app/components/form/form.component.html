@@ -1,0 +1,132 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" action="" class="form">
+  <h2>Добавить транзакцию</h2>
+
+  <div class="form-fields">
+    <div class="form-fields-group">
+      <div class="form-field">
+        <div [collapsed]="true" class="transaction-group" tuiGroup>
+          @for (transaction of transactions; track transaction) {
+            <tui-radio-block
+              contentAlign="right"
+              [formControl]="form.controls.transaction"
+              [item]="transaction"
+              size="l"
+              [ngClass]="{'block-error' : (isSubmitted() && form.controls.transaction.invalid)}"
+            >
+              {{ transaction | titlecase }}
+            </tui-radio-block>
+          }
+        </div>
+        @if (hasErrors(form.controls.transaction, 'required')) {
+          <div class="error-message">
+            <small>Не выбран тип транзакции</small>
+          </div>
+        }
+      </div>
+      <div class="form-field">
+        <tui-select
+          [formControl]="form.controls.category"
+          [pseudoInvalid]="isSubmitted() && !!form.controls.category.errors"
+          tuiTextfieldSize="l"
+        >
+          Выберите категорию транзакции
+          <tui-data-list-wrapper
+            *tuiDataList
+            [items]="selectedCategories()"
+            emptyContent="Выберите тип транзакции"
+          ></tui-data-list-wrapper>
+        </tui-select>
+        @if (hasErrors(form.controls.category, 'required')) {
+          <div class="error-message">
+            <small>Категория транзакции должна быть выбрана</small>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="form-fields-group">
+      <div class="form-fields-amount">
+        <tui-input-number
+          [formControl]="form.controls.amount"
+          [pseudoInvalid]="isSubmitted() && !!form.controls.amount.errors"
+          [tuiTextfieldPostfix]="'₽'"
+        >
+          Введите сумму
+        </tui-input-number>
+        @if (hasErrors(form.controls.amount, 'required')) {
+          <div class="error-message">
+            <small>Поле не должно быть пустым</small>
+          </div>
+        }
+        @if (hasErrors(form.controls.amount, 'min')) {
+          <div class="error-message">
+            <small>Не может быть меньше 0</small>
+          </div>
+        }
+        @if (hasErrors(form.controls.amount, 'max')) {
+          <div class="error-message">
+            <small>Не может быть больше 10 000 000</small>
+          </div>
+        }
+
+      </div>
+
+      <div class="form-fields-date">
+        <tui-input-date
+          [formControl]="form.controls.date"
+          [max]="currentDate()"
+          [pseudoInvalid]="isSubmitted() && form.controls.date.invalid"
+          tuiTextfieldSize="l"
+        >
+          Выберите дату
+        </tui-input-date>
+        @if (hasErrors(form.controls.date, 'required')) {
+          <div class="error-message">
+            <small>Дата должна быть выбрана</small>
+          </div>
+        }
+      </div>
+    </div>
+
+    <tui-checkbox-labeled
+      [formControl]="controlCheckedDescription"
+      class="tui-space_top-5"
+      size="l"
+    >
+      Добавить комментарий
+    </tui-checkbox-labeled>
+
+    @if (controlCheckedDescription.value) {
+      <div class="form-fields-area" [@open]>
+        <tui-textarea
+          [appControl]="form.controls.description"
+          [appValidation]="isDescription()"
+          [formControl]="form.controls.description"
+          [pseudoInvalid]="isSubmitted() && isDescription() && form.controls.description.invalid"
+          appValidationDescription
+        >
+          Комментарий
+          <textarea tuiTextfield></textarea>
+        </tui-textarea>
+        @if (hasErrors(form.controls.description, 'required')) {
+          <div class="error-message">
+            <small>Комментарий не может быть пустым</small>
+          </div>
+        }
+        @if (hasErrors(form.controls.description, 'maxlength')) {
+          <div class="error-message">
+            <small>Не может быть больше 100 символов</small>
+          </div>
+        }
+      </div>
+    }
+
+    <button
+      class="tui-space_right-3 tui-space_bottom-3"
+      tuiButton
+      type="submit"
+    >
+      {{ buttonName() }}
+    </button>
+  </div>
+</form>
