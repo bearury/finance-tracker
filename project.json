@@ -13,7 +13,7 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/finance-tracker",
+        "outputPath": "docs/finance-tracker",
         "index": "./src/index.html",
         "browser": "./src/main.ts",
         "polyfills": [
@@ -25,31 +25,6 @@
           {
             "glob": "**/*",
             "input": "public"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/@taiga-ui/icons/src",
-            "output": "assets/taiga-ui/icons"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/@taiga-ui/icons/src",
-            "output": "assets/taiga-ui/icons"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/@taiga-ui/icons/src",
-            "output": "assets/taiga-ui/icons"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/@taiga-ui/icons/src",
-            "output": "assets/taiga-ui/icons"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/@taiga-ui/icons/src",
-            "output": "assets/taiga-ui/icons"
           }
         ],
         "styles": [
